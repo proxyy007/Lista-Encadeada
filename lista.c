@@ -49,5 +49,47 @@ int lst_vazia (Lista*lst){
 
 /*Função busca elemento na lista*/
 
-//Lista* busca (Lista*lst, int v)
+Lista* busca (Lista*lst, int val){
+	Lista* p;
+	
+	for (p=lst; p!=NULL; p=p->prox){
+		
+		if(p->info == val){
+			return p;
+		}
+		return NULL; /*Não achou o elemento*/
+	}
+	
+}
 
+/* função retira: retira elemento da lista */
+
+Lista* lst_retira(Lista* lst, int val){
+	
+	Lista* ant = NULL;  /* ponteiro para o elemento anterior*/
+	Lista* p= lst; /* ponteiro para percorrer a lista*/
+	
+	/*Procura elemento na lista, guardando anterior*/
+	
+	while (p!= NULL && p->info != val){
+		
+		ant = p;
+		p= p->prox;
+		
+	}
+	
+	/* Verifiica se achou o elemento*/
+	
+	if (p == NULL)
+		{
+			/* retira elemento do inicio*/
+			lst = p->prox;
+		}
+	else{  /* retira elemento do meio da lista */
+		
+		ant->prox = p->prox;
+	}
+	
+	free(p);
+	return lst;
+}
